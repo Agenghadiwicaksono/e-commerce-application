@@ -1,9 +1,10 @@
-import 'package:e_commerce/components/cutom_suffix_icon.dart';
-import 'package:e_commerce/components/default_button.dart';
+import 'package:e_commerce/components/custom_suffix_icon.dart';
 import 'package:e_commerce/components/error_form.dart';
+import 'package:e_commerce/components/my_default_button.dart';
 import 'package:e_commerce/constant.dart';
 import 'package:e_commerce/size_config.dart';
 import 'package:flutter/material.dart';
+
 
 class ForgotPasswordForm extends StatefulWidget {
   const ForgotPasswordForm({super.key});
@@ -13,35 +14,36 @@ class ForgotPasswordForm extends StatefulWidget {
 }
 
 class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
-  final _formKey = GlobalKey<FormState>();
+  final _frontKey = GlobalKey<FormState>();
   String? email;
   final List<String> errors = [];
+  
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
+      key: _frontKey,
       child: Column(
         children: [
-          emailForm(),
-          SizedBox(height: getPropScreenHeight(20),),
+          emailFormField(),
+          SizedBox(height: getPropScreenHeight(20)),
           ErrorForm(errors: errors),
-          SizedBox(height: getPropScreenHeight(20),),
-          DefaultButton(
-            text: "Resest Password", 
-            press: (){
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
+          SizedBox(height: getPropScreenHeight(20)),
+          MyDefaultButton(
+            text: "Send Link",
+            press: () {
+              if (_frontKey.currentState!.validate()) {
+                _frontKey.currentState!.save();
               }
-            }
+            },
           )
-        ],
-      )
+        ]
+      ),
     );
   }
-  TextFormField emailForm() {
+  TextFormField emailFormField() {
     return TextFormField(
       onSaved: (newValue) => email = newValue,
-      onChanged: (value){
+      onChanged: (value) {
         if (value.isNotEmpty && errors.contains(kEmailNullError)) {
           setState(() {
             errors.remove(kEmailNullError);
@@ -58,26 +60,26 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
           setState(() {
             errors.add(kEmailNullError);
           });
-          return"";
+          return "";
         } else if (!emailValidatorRegExp.hasMatch(value) && (!errors.contains(kPassNullError) && !errors.contains(kInvalidEmailError))) {
           setState(() {
             errors.add(kInvalidEmailError);
           });
-          return"";
+          return "";
         }
         return null;
       },
       keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
-        labelText: "Email",
-        hintText: "Enter Your Email",
-                                    
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CostumSuffixIcon(
-          icon: "assets/icons/Mail.svg",
-        )
-      ), 
+          labelText: "Email",
+          hintText: "Your email here",
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          suffixIcon: CustomSuffixIcon(
+            icon: "assets/icons/Mail.svg",
+          )),
     );
   }
 }
+
+
 

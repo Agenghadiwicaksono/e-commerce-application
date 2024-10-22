@@ -1,5 +1,7 @@
-import 'package:e_commerce/screens/forget_password/components/body.dart';
+import 'package:e_commerce/screens/forgot_password/components/body.dart';
 import 'package:flutter/material.dart';
+
+
 
 class ForgotPasswordScreen extends StatelessWidget {
   static String routeName = "/forgot_password";
@@ -12,7 +14,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         title: const Text("Forgot Password"),
         centerTitle: true,
       ),
-      body: Body(),
+      body: const Body(),
     );
   }
 }

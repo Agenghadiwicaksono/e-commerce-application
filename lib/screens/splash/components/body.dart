@@ -1,12 +1,12 @@
-//import 'package:e_commerce/constant.dart';
-import 'package:e_commerce/components/default_button.dart';
+import 'package:e_commerce/components/my_default_button.dart';
 import 'package:e_commerce/constant.dart';
 import 'package:e_commerce/model/splash_data.dart';
 import 'package:e_commerce/screens/sign_in/sign_in_screen.dart';
 import 'package:e_commerce/screens/splash/components/splash_content.dart';
 import 'package:e_commerce/size_config.dart';
-//import 'package:e_commerce/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -20,6 +20,7 @@ class _BodyState extends State<Body> {
 
   int currentPage = 0;
 
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: SizedBox(
@@ -31,37 +32,43 @@ class _BodyState extends State<Body> {
               child: PageView.builder(
                 onPageChanged: (value) {
                   setState(() {
-                    currentPage = value;
-                  });
+                    currentPage = value;  
+                  });  
+
+                  print(currentPage);
                 },
                 itemCount: splashData.length,
                 itemBuilder: (context, index) => SplashContent(
-                  text: splashData[index]["text"]!, 
-                  image: splashData[index]["image"]!
-                ) 
-              )
+                  text: splashData[index]["text"]!,
+                  image: splashData[index]["image"]!,
+                ),
+              ),
             ),
             Expanded(
               flex: 2,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: getPropScreenWidth(22)),
+                padding: EdgeInsets.symmetric(
+                  horizontal: getPropScreenWidth(20), 
+                ),
                 child: Column(
                   children: [
                     const Spacer(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(splashData.length, (index) => dotBuilder(index: index))
+                      children: List.generate(
+                        splashData.length,
+                        (index) => dotBuilder(index: index),
+                      )
                     ),
                     const Spacer(
                       flex: 3,
                     ),
-                    DefaultButton(
-                      text: "Continue", 
-                      press: (){
-                        Navigator.pushNamed(context, SignInScreen.routeName);
+                    MyDefaultButton(
+                      text: "Continue", press: () {
+                        Navigator.pushReplacementNamed(context, SignInScreen.routeName);
                       },
                     ),
-                    const Spacer()
+                    const Spacer(),
                   ],
                 ),
               ),
@@ -72,16 +79,17 @@ class _BodyState extends State<Body> {
     );
   }
 
-  AnimatedContainer dotBuilder({required int index}) {
+AnimatedContainer dotBuilder({required int index}) {
     return AnimatedContainer(
       duration: kAnimationDuration,
       margin: const EdgeInsets.only(right: 5),
       height: 6,
-      width: currentPage == index? 20 : 6,
+      width: currentPage == index ? 20 : 6,
       decoration: BoxDecoration(
-        color: currentPage == index? kPrimaryColor :Color(0xffd8d8d8),
-        borderRadius: BorderRadius.circular(3)
+        color: currentPage == index ? kPrimaryColor : const Color(0xffd8d8d8),
+        borderRadius: BorderRadius.circular(3),
       ),
     );
   }
 }
+

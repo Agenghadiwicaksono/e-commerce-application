@@ -1,6 +1,7 @@
 import 'package:e_commerce/screens/complete_profile/components/body.dart';
 import 'package:flutter/material.dart';
 
+
 class CompleteProfileScreen extends StatelessWidget {
   static String routeName = "/complete_profile";
   const CompleteProfileScreen({super.key});
@@ -9,7 +10,7 @@ class CompleteProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Complete Profile"),
+        title: const Text("Sign Up"),
         centerTitle: true,
       ),
       body: const Body(),

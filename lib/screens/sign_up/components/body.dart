@@ -4,6 +4,7 @@ import 'package:e_commerce/screens/sign_up/components/sign_up_form.dart';
 import 'package:e_commerce/size_config.dart';
 import 'package:flutter/material.dart';
 
+
 class Body extends StatelessWidget {
   const Body({super.key});
 
@@ -16,51 +17,45 @@ class Body extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
-                height: SizeConfig.screenHeight * 0.03,
-              ),
+              SizedBox(height: SizeConfig.screenHeight * 0.04),
               Text(
                 "Register Account",
-                style: headingStyle
+                style: headingStyle,
               ),
-               const Text(
-                "Complete your Details or Continue \n with Social Media",
+              const Text(
+                "Complete your details or continue \nwith social media",
                 textAlign: TextAlign.center,
               ),
-              SizedBox(
-                height: SizeConfig.screenHeight * 0.06,
-              ),
-              SignUpForm(),
-              SizedBox(
-                height: SizeConfig.screenHeight * 0.06,
-              ),
+              SizedBox(height: SizeConfig.screenHeight * 0.06),
+              const SignUpForm(),
+              SizedBox(height: SizeConfig.screenHeight * 0.06),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SocialMediaIcon(
-                    icon: "assets/icons/google-icon.svg", 
-                    press: (){}
-                  ),
-                  SocialMediaIcon(
-                    icon: "assets/icons/facebook-2.svg", 
-                    press: (){}
-                  ),
-                  SocialMediaIcon(
-                    icon: "assets/icons/twitter.svg", 
-                    press: (){}
-                  )
-                ],
-              ),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SocialMediaIcon(
+                      icon: "assets/icons/google-icon.svg",
+                      press: () {},
+                    ),
+                    SocialMediaIcon(
+                      icon: "assets/icons/facebook-2.svg",
+                      press: () {},
+                    ),
+                    SocialMediaIcon(
+                      icon: "assets/icons/twitter.svg",
+                      press: () {},
+                    ),
+                  ],
+                ),
               SizedBox(height: SizeConfig.screenHeight * 0.03),
               const Text(
-                "By Continuing you Confirm that you Agree \nwith our term and Condition",
+                "By continuing your confirm that you agree \nwith our Term and Condition",
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: SizeConfig.screenHeight * 0.03),
-            ],
+            ]
           ),
         ),
-      ),
+      )
     );
   }
 }

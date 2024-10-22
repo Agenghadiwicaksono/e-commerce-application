@@ -1,6 +1,7 @@
 import 'package:e_commerce/screens/sign_in/components/body.dart';
 import 'package:flutter/material.dart';
 
+
 class SignInScreen extends StatelessWidget {
   static String routeName = "/sign_in";
   const SignInScreen({super.key});
@@ -9,10 +10,11 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sign In"),
+        title: const Text("Sign In"),
         centerTitle: true,
+        leading: const SizedBox(),
       ),
-      body: Body(),
+      body: const Body(),
     );
   }
 }
