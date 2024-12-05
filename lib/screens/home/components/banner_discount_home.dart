@@ -9,6 +9,7 @@ class BannerDiscountHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 150,
       margin: EdgeInsets.all(getPropScreenWidth(20)),
       padding: EdgeInsets.symmetric(
         horizontal: getPropScreenWidth(20), 
@@ -17,16 +18,10 @@ class BannerDiscountHome extends StatelessWidget {
       width: double.infinity,
       // height: 90,
       decoration: BoxDecoration(
-        color: const Color(0xff4a3298),
         borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text.rich(
-        TextSpan(
-          style: const TextStyle(color: Colors.white),
-          children: [
-            const TextSpan(text: "A Summer Surprise\n"),
-            TextSpan(text: "Cashback 20%", style: TextStyle(fontSize: getPropScreenWidth(24), fontWeight: FontWeight.bold))
-          ]
+        image: const DecorationImage(
+          image: AssetImage('assets/images/Banner Discount.png'),
+          fit: BoxFit.cover
         )
       ),
     );

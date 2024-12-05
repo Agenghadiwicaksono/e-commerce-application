@@ -3,7 +3,10 @@ import 'package:e_commerce/model/products.dart';
 import 'package:e_commerce/screens/details/detail_screen.dart';
 import 'package:e_commerce/screens/home/components/section_title.dart';
 import 'package:e_commerce/size_config.dart';
+import 'package:e_commerce/state_managements/favourite_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 
 class PopularProducts extends StatelessWidget {
   const PopularProducts({
@@ -16,36 +19,34 @@ class PopularProducts extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: getPropScreenWidth(20)),
-          child: const SectionTitle(title: "Popular Products"),
+          child: const SectionTitle(
+            title: "Popular Products",
+          ),
         ),
         SizedBox(height: getPropScreenHeight(20)),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: SizedBox(
-            height: getPropScreenHeight(230),
+            height: getPropScreenWidth(220),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: getPropScreenWidth(10)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: List.generate(
-                  demoProducts.length, 
-                  (index) {
-                    final Product product = demoProducts[index];
+              child: Consumer<FavouriteProvider>(
+                builder: (context, products, child) => Row(
+                  children: List.generate(products.listProducts.length, (index) {
+                    final Product product = products.listProducts[index];
                     return ItemPopularProduct(
-                      product: demoProducts[index], 
+                      product: product,
                       press: () => Navigator.pushNamed(
-                        context, DetailScreen.routeName, 
-                        arguments: product
-                      ),
+                          context, DetailScreen.routeName,
+                          arguments: product),
                     );
-                  }
+                  }),
                 ),
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }
 }
-

@@ -22,10 +22,13 @@ class ItemCategory extends StatelessWidget {
             height: getPropScreenWidth(55),
             width: getPropScreenWidth(55),
             decoration: BoxDecoration(
-              color: kPrimaryLightColor,
+              color: kSecondaryColor.withOpacity(.10),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: SvgPicture.asset(icon),
+            child: SvgPicture.asset(
+              icon,
+              colorFilter: const ColorFilter.mode(kPrimaryLightColor, BlendMode.srcIn),
+            ),
           ),
           const SizedBox(height: 5),
           Text(name, textAlign: TextAlign.center),

@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 
 
 class Body extends StatelessWidget {
-  const Body({super.key});
+  const Body({super.key,});
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +20,8 @@ class Body extends StatelessWidget {
             SizedBox(height: getPropScreenHeight(20)),
             const HeaderHomePart(),
             SizedBox(height: getPropScreenHeight(10)),
-            const Categories(),
             const BannerDiscountHome(),
+            const Categories(),
             const SpecialOffers(),
             SizedBox(height: getPropScreenHeight(20)),
             const PopularProducts(),

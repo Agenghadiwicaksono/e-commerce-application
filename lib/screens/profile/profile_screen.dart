@@ -1,5 +1,8 @@
 import 'package:e_commerce/screens/profile/components/body.dart';
+import 'package:e_commerce/state_managements/auth_provider.dart';
+import 'package:e_commerce/state_managements/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class ProfileScreen extends StatelessWidget {
@@ -8,16 +11,35 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const Body();
-  }
-
-  AppBar customAppbar() {
-    return AppBar(
-      title: const Text(
-        'Your Profile',
-        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-      ),
-      centerTitle: false,
+     final authProvider = Provider.of<AuthProvider>(context); // Access AuthProvider
+    return Scaffold(
+      appBar: appBar(context),
+      body: Body(email: authProvider.email,),
     );
   }
+}
+
+AppBar appBar(BuildContext context) {
+  return AppBar(
+    forceMaterialTransparency: true,
+    leading: Container(),
+    centerTitle: true,
+    title: Text(
+      "Profile",
+      style: Theme.of(context).textTheme.bodyLarge,
+    ),
+    actions: [
+      Consumer<ThemeProvider>(
+        builder: (context, theme, child) => IconButton(
+          icon: Icon(
+            theme.isDarkMode ? Icons.wb_sunny : Icons.nightlight_round,
+            color: Theme.of(context).iconTheme.color,
+          ),
+          onPressed: () {
+            theme.toggleTheme(!theme.isDarkMode);
+          },
+        ),
+      ),
+    ],
+  );
 }

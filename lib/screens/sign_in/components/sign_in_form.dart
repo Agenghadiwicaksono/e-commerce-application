@@ -5,7 +5,9 @@ import 'package:e_commerce/constant.dart';
 import 'package:e_commerce/screens/forgot_password/forgot_password_screen.dart';
 import 'package:e_commerce/screens/login_success/login_success_screen.dart';
 import 'package:e_commerce/size_config.dart';
+import 'package:e_commerce/state_managements/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class SignInForm extends StatefulWidget {
@@ -22,6 +24,7 @@ class _SignInFormState extends State<SignInForm> {
   final List<String> errors = [];
 
   bool remember = false;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -46,9 +49,21 @@ class _SignInFormState extends State<SignInForm> {
                 }
 
                 if (errors.isEmpty) {
-                  Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                  final authProvider = Provider.of<AuthProvider>(context, listen: false);
+                  authProvider.setAuth(true);
+                  
+                  if (email != null) {
+                    authProvider.setEmail(email!); // Store email
+                  }
+                  
+                  if (password != null) {
+                    authProvider.setPassword(password!); // Store password (if needed)
+                  }
+
+                  Navigator.pushNamedAndRemoveUntil(context, LoginSuccessScreen.routeName,
+                    (Route<dynamic> route) => false);
                 }
-              },
+              }
             )
           ],
         ));

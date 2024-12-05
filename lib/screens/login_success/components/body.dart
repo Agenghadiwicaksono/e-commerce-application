@@ -1,5 +1,5 @@
 import 'package:e_commerce/components/my_default_button.dart';
-import 'package:e_commerce/main_screen.dart';
+import 'package:e_commerce/components/custom_navigation_bar.dart';
 import 'package:e_commerce/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +21,6 @@ class Body extends StatelessWidget {
             style: TextStyle(
               fontSize: getPropScreenWidth(30),
               fontWeight: FontWeight.bold,
-              color: Colors.black
             ),
           ),
           const Spacer(),
@@ -30,7 +29,7 @@ class Body extends StatelessWidget {
             child: MyDefaultButton(
               text: "Back to Home",
               press: () {
-                Navigator.pushNamed(context, MainScreen.routeName);
+                Navigator.pushNamed(context, CustomNavigationBar.routeName);
               },
             ),
           ),

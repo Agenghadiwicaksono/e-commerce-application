@@ -1,8 +1,9 @@
-import 'package:e_commerce/main_screen.dart';
+import 'package:e_commerce/components/custom_navigation_bar.dart';
 import 'package:e_commerce/model/products.dart';
 import 'package:e_commerce/screens/cart/cart_screen.dart';
 import 'package:e_commerce/screens/complete_profile/complete_profile_screen.dart';
 import 'package:e_commerce/screens/details/detail_screen.dart';
+import 'package:e_commerce/screens/favourite/favourite_screen.dart';
 import 'package:e_commerce/screens/forgot_password/forgot_password_screen.dart';
 import 'package:e_commerce/screens/home/home_screen.dart';
 import 'package:e_commerce/screens/login_success/login_success_screen.dart';
@@ -27,6 +28,7 @@ final Map<String, WidgetBuilder> routes = {
     return DetailScreen(product: product);
   },
   CartScreen.routeName : (context) => const CartScreen(),
+  FavouriteScreen.routeName : (context) => const FavouriteScreen(),
   ProfileScreen.routeName : (context)=> const ProfileScreen(),
-  MainScreen.routeName : (context) => const MainScreen(),
+  CustomNavigationBar.routeName : (context) => const CustomNavigationBar(),
 };

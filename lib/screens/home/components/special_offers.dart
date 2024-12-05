@@ -14,7 +14,9 @@ class SpecialOffers extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: getPropScreenWidth(20)),
-          child: const SectionTitle(title: "Special For You"),
+          child: const SectionTitle(
+            title: "Special For You",
+          ),
         ),
         SizedBox(height: getPropScreenHeight(20)),
         SingleChildScrollView(
@@ -25,7 +27,7 @@ class SpecialOffers extends StatelessWidget {
               children: [
                 SpecialOfferCard(
                   image: "assets/images/Image Banner 2.png",
-                  category: "Smartphone",
+                  category: "Gamers Device",
                   numOfBrands: "18",
                   press: () {
                     // Navigator.pushNamed(context, DetailsScreen.routeName);
@@ -33,7 +35,7 @@ class SpecialOffers extends StatelessWidget {
                 ),
                 SpecialOfferCard(
                   image: "assets/images/Image Banner 3.png",
-                  category: "Fashion",
+                  category: "New Fashion",
                   numOfBrands: "24",
                   press: () {
                     // Navigator.pushNamed(context, DetailsScreen.routeName);

@@ -17,7 +17,8 @@ class DetailScreen extends StatelessWidget {
           onPressed: () {
           Navigator.pop(context);
           }, 
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          // ignore: prefer_const_constructors
+          icon: Icon(Icons.arrow_back_ios_new_rounded,),
         ),
         actions: [
           Padding(

@@ -1,12 +1,16 @@
 import 'package:e_commerce/components/my_default_button.dart';
+import 'package:e_commerce/components/rounded_icon_button.dart';
+import 'package:e_commerce/model/cart.dart';
 import 'package:e_commerce/model/products.dart';
 import 'package:e_commerce/screens/details/components/color_picker.dart';
 import 'package:e_commerce/screens/details/components/detail_description.dart';
 import 'package:e_commerce/screens/details/components/image_details.dart';
 import 'package:e_commerce/screens/details/components/rounded_container.dart';
 import 'package:e_commerce/size_config.dart';
+import 'package:e_commerce/state_managements/cart_provider.dart';
+import 'package:e_commerce/state_managements/favourite_provider.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key, required this.product});
@@ -18,29 +22,102 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  int currentSelectedColor = 0;
+  int totalSelected = 1;
   @override
   Widget build(BuildContext context) {
-    final Product product = widget.product;
     return SizedBox(
       width: double.infinity,
       child: SingleChildScrollView(
         child: Column(
           children: [
-            ImageDetails(product: product),
+            ImageDetails(product: widget.product),
             RoundedContainer(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  DetailDescription(product: product),
+                  DetailDescription(product: widget.product),
                   SizedBox(
-                    height: getPropScreenHeight(40),
+                    height: getPropScreenWidth(40),
                   ),
-                  ColorPicker(product: product),
                   Padding(
                     padding: EdgeInsets.symmetric(
-                        vertical: getPropScreenWidth(40),
-                        horizontal: getPropScreenWidth(70)),
-                    child: MyDefaultButton(text: 'add to cart', press: () {}),
+                        horizontal: getPropScreenWidth(20)),
+                    child: SizedBox(
+                      height: getPropScreenWidth(40),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ...List.generate(
+                            widget.product.colors.length,
+                            (index) {
+                              final Color color = widget.product.colors[index];
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    currentSelectedColor = index;
+                                  });
+                                },
+                                child: ItemColorDot(
+                                  color: color,
+                                  isSelected: index == currentSelectedColor,
+                                ),
+                              );
+                            },
+                          ),
+                          const Spacer(),
+                          Row(
+                            children: [
+                              RoundedIconBtn(
+                                  icon: Icons.remove,
+                                  press: totalSelected > 1
+                                      ? () {
+                                          setState(() {
+                                            totalSelected--;
+                                          });
+                                        }
+                                      : null),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  "$totalSelected",
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                              ),
+                              RoundedIconBtn(
+                                  icon: Icons.add,
+                                  showShadow: true,
+                                  press: () {
+                                    setState(() {
+                                      totalSelected++;
+                                    });
+                                  }),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: getPropScreenWidth(70),
+                        vertical: getPropScreenWidth(40)),
+                    child: MyDefaultButton(
+                        text: "Add To Cart",
+                        press: () {
+                          Provider.of<CartProvider>(context, listen: false)
+                              .addCartItems(Cart(
+                                  product: widget.product,
+                                  numOfItem: totalSelected));
+                          Provider.of<FavouriteProvider>(context, listen: false)
+                              .toggleFavouriteStatus(widget.product.id);
+
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Added to cart"),
+                          ));
+                        }),
                   )
                 ],
               ),
@@ -51,4 +128,3 @@ class _BodyState extends State<Body> {
     );
   }
 }
-

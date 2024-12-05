@@ -4,7 +4,7 @@ import 'package:e_commerce/size_config.dart';
 import 'package:flutter/material.dart';
 
 const kPrimaryColor = Colors.blue;
-const kPrimaryLightColor = Color.fromARGB(255, 170, 234, 248);
+const kPrimaryLightColor = Color.fromARGB(255, 16, 239, 255);
 const kPrimaryGradientColor = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
@@ -21,7 +21,6 @@ const kAnimationDuration = Duration(milliseconds: 200);
 final headingStyle = TextStyle(
   fontSize: getPropScreenWidth(28),
   fontWeight: FontWeight.bold,
-  color: Colors.black,
   height: 1.5,
 );
 

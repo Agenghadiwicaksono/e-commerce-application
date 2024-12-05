@@ -19,7 +19,6 @@ class SectionTitle extends StatelessWidget {
           style: TextStyle(
             fontSize: getPropScreenWidth(18),
             fontWeight: FontWeight.bold,
-            color: Colors.black,
           ),
         ),
         const Text("See More", style: TextStyle(
