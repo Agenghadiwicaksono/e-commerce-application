@@ -7,7 +7,6 @@ import 'package:e_commerce/state_managements/favourite_provider.dart';
 import 'package:e_commerce/state_managements/search_provider.dart';
 import 'package:e_commerce/state_managements/theme_provider.dart';
 import 'package:e_commerce/theme.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
