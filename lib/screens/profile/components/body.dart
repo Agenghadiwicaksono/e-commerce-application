@@ -63,6 +63,16 @@ class Body extends StatelessWidget {
                       (Route<dynamic> route) => false);
               }, 
             ),
+            SizedBox(
+              height: getPropScreenWidth(20),
+            ),
+            const Row(
+              mainAxisAlignment:MainAxisAlignment.center,
+              children: [
+                Icon(Icons.copyright),
+                Text(' 2024 By Ageng All Right Reserved')
+              ],
+            )
           ],
         ),
       );
